@@ -40,26 +40,32 @@ public void prosesPinjam(ArrayList<Buku> daftar, String[] banyakKode) {
     }
 
 // Method Overloading versi 1 untuk proses pengembalian 1 buku
-public void prosesKembali(ArrayList<Buku> daftar, String kode) {
+public boolean prosesKembali(ArrayList<Buku> daftar, String kode) {
     for (Buku b : daftar) {
         if (b.getKode().equalsIgnoreCase(kode.trim())) {
             if (!b.cekStatus()) { //cekStatus buku dari class Buku
                 b.kembalikanBuku(); 
                 System.out.println("ID [" + kode.trim() + "]: Berhasil dikembalikan.");
+                return true;
             } else {
                 System.out.println("ID [" + kode.trim() + "]: Buku masih tersedia di perpustakaan.");
-            }
-            return;
+            return false; 
+        }
         }
     }
     System.out.println("ID [" + kode.trim() + "]: GAGAL (Kode buku tidak ditemukan).");
+    return false;
 }
-
+    
 // Method Overloading versi 2 untuk proses pengembalian banyak buku
-public void prosesKembali(ArrayList<Buku> daftar, String[] banyakKode) {
+public boolean prosesKembali(ArrayList<Buku> daftar, String[] banyakKode) {
     System.out.println("\n--- Memproses Pengembalian ---");
+    boolean adaYangBerhasil = false;
     for (String k : banyakKode) {
-        prosesKembali(daftar, k); 
+        if (prosesKembali(daftar, k)) {
+            adaYangBerhasil = true;
+        }
     }
+    return adaYangBerhasil;
 }
 }
