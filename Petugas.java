@@ -55,9 +55,10 @@ class Petugas extends User {
                 fungsi.prosesKembali(daftarBuku, daftarIdKembali);
                 }  
             
-                // Logic: "DENDA?"
-                    System.out.print("Apakah terlambat mengembalikan buku? (y/n): ");
+                // Konfirmasi
+                System.out.print("\nApakah ada buku yang terlambat dikembalikan? (y/n): ");
                     String dendaCheck = input.nextLine();
+                
                     if (dendaCheck.equalsIgnoreCase("y")) {
                     System.out.print("Berapa buku yang terlambat dikembalikan? ");
                     int jmlBukuTelat = input.nextInt();
