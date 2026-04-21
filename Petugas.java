@@ -47,18 +47,20 @@ class Petugas extends User {
                 System.out.print("Input Kode Buku: ");
                 String inputKembali = input.nextLine();
                 String[] daftarIdKembali = inputKembali.split(",");
+                boolean statusKembali;
 
             // Overloading berdasarkan jumlah input
                 if (daftarIdKembali.length == 1) {
-                fungsi.prosesKembali(daftarBuku, daftarIdKembali[0]);
+                statusKembali = fungsi.prosesKembali(daftarBuku, daftarIdKembali[0]);
                 } else {
-                fungsi.prosesKembali(daftarBuku, daftarIdKembali);
+                statusKembali = fungsi.prosesKembali(daftarBuku, daftarIdKembali);
                 }  
             
-                // Konfirmasi
+                // Denda
+                if (statusKembali) {
                 System.out.print("\nApakah ada buku yang terlambat dikembalikan? (y/n): ");
-                    String dendaCheck = input.nextLine();
-                
+                String dendaCheck = input.nextLine();
+
                     if (dendaCheck.equalsIgnoreCase("y")) {
                     System.out.print("Berapa buku yang terlambat dikembalikan? ");
                     int jmlBukuTelat = input.nextInt();
@@ -73,9 +75,8 @@ class Petugas extends User {
                     System.out.println("Jumlah Buku : " + jmlBukuTelat);
                     System.out.println("Jumlah Hari : " + jmlHari);
                     System.out.println("Total Denda : Rp " + totalDenda);
-                    } else {
-                    System.out.println("Terima kasih sudah mengembalikan buku tepat waktu.");
                     }
+                    } 
                     break;
 
             case 0: // Jalur "Keluar -> MAIN"
